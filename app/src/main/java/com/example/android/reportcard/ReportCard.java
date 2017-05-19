@@ -25,7 +25,7 @@ public class ReportCard {
         this.gradeInText = gradeInText;
     }
 
-//here comes all the setters
+//here comes all the setters (did it for every private variables)
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -48,11 +48,9 @@ public class ReportCard {
     }
 
     public void setGradeInText(String gradeInText) {
-        this.gradeInText = gradeInText;
+        this.gradeInText = gradeInText();
     }
-    //here comes all the getters
-
-
+//here comes all the getters (did it for every private variables)
     public String getFirstName() {
         return firstName;
     }
@@ -78,32 +76,32 @@ public class ReportCard {
     }
 
     public double calculateAverage(){
-        int sum = 0;
-        for (int i = 0; i < classGrades.length; i++){
-            sum += classGrades[i];
+        int sum = 0;  //intial value of sum variable outside the loop
+        for (int i = 0; i < classGrades.length; i++){ //this loop is going through the array and...
+            sum += classGrades[i];  //summarizes it's elements
         }
-        withText();
-        return (sum / classGrades.length);
+        return (sum / classGrades.length); //returns the average
     }
 
-    public void withText(){
-
-        if (calculateAverage() < min_to_succeed && calculateAverage() >= min_percent){
+    public String gradeInText(){
+        if (calculateAverage() < min_to_succeed && calculateAverage() >= min_percent){ //if the percentage is bigger or equal than 0 but less than 60
             gradeInText = "Failed!";
         }
-        else if (calculateAverage() == max_percent){
+        else if (calculateAverage() == max_percent){ //if the percentage is at the maximum
             gradeInText = "Excellent work!";
         }
-        else if (calculateAverage() < min_percent || calculateAverage() > max_percent){
+        else if (calculateAverage() < min_percent || calculateAverage() > max_percent){ // if the percentage is out of range
             gradeInText = "Calculation error!";
         }
         else{
-            gradeInText = "Success!";
+            gradeInText = "Success!"; //everything else: 60-99 percent
         }
+        return gradeInText;
     }
 
+
     @Override
-    public String toString() {
+    public String toString() {  //this makes the datas into a string
         return "Student name: " + getFirstName() + getLastName() + "\n" +
                 "Teacher name: " + getTeacherName() + "\n" +
                 "Grades: " + Arrays.toString(classGrades) + "\n" +
