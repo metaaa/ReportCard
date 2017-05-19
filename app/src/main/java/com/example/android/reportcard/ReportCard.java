@@ -106,6 +106,6 @@ public class ReportCard {
                 "Teacher name: " + getTeacherName() + "\n" +
                 "Grades: " + Arrays.toString(classGrades) + "\n" +
                 "Average: " + getAverage() + "\n" +
-                gradeInText;
+                getGradeInText();
     }
 }
